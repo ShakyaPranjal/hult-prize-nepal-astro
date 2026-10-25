@@ -1,0 +1,37 @@
+---
+import { workshops } from '../data/site';
+import SectionHead from './SectionHead.astro';
+const stats = [[45, '+', 'colleges across Nepal'], [50, '', 'student-led startups'], [20, '+', 'nationally renowned judges'], [38, '', 'Campus Directors']] as const;
+const pipe = [
+  ['OnCampus Programs', 'Win your campus Grand Finale.'],
+  ['Workshops', 'Business models, pitching, customer discovery and startup finance with entrepreneurs and industry experts.'],
+  ['National Competition', 'Pitch to 20+ judges, investors and ecosystem leaders.'],
+  ['Digital Incubator & beyond', "Nepal's winner joins the Hult Prize Digital Incubator on the road to the Global Finals."],
+];
+---
+<section class="sec nationals spot-glow" id="nationals">
+  <div class="wrap">
+    <SectionHead kicker="The next stage" lead="Winning teams from OnCampus Programs across the country compete for Nepal's place in the Digital Incubator.">National Competition <em>2027</em></SectionHead>
+    <div class="nat-grid">
+      <div class="nat-copy reveal">
+        <h3 style="font-size:1.4rem">Event format</h3>
+        <ul><li>Two days in the last week of April 2027</li><li>Preliminary pitching rounds plus a final pitch event</li><li>The national winner advances to the Hult Prize Digital Incubator (June–July)</li><li>All national finalists are considered for Hult Prize's Second Chance Round</li></ul>
+        <h3 style="font-size:1.4rem;margin-top:10px">Who participates?</h3>
+        <ul><li>All startups that won a local competition on their campus</li><li>Startups from the Open Application that passed the first online review</li><li>Every startup must represent a university in Nepal</li></ul>
+      </div>
+      <div class="nat-stats reveal d1">
+        {stats.map(([n, s, l]) => <div><b data-count={n} data-suffix={s}>{n}{s}</b><span>{l}</span></div>)}
+      </div>
+    </div>
+
+    <h3 style="font-size:1.4rem;margin-top:56px" class="reveal">Workshops for qualified teams</h3>
+    <div class="workshops">
+      {workshops.map(([b, s], i) => <div class={`ws reveal d${i % 3}`}><span class="ico" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span><b>{b}</b><span>{s}</span></div>)}
+    </div>
+
+    <h3 style="font-size:1.4rem;margin-top:56px" class="reveal">From campus to the world</h3>
+    <div class="pipeline">
+      {pipe.map(([b, s], i) => <div class={`pipe reveal d${i}`}><b>{b}</b><span>{s}</span></div>)}
+    </div>
+  </div>
+</section>

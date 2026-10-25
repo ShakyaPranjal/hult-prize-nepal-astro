@@ -1,0 +1,11 @@
+---
+import { Image } from 'astro:assets';
+import { sdgIcon } from '../lib/img';
+import { sdgs } from '../data/site';
+const loop = [...sdgs, ...sdgs];
+---
+<div class="sdgband" aria-hidden="true">
+  <div class="sdgtrack">
+    {loop.map((name, i) => <Image src={sdgIcon((i % 17) + 1)} alt="" width={192} height={192} title={name} />)}
+  </div>
+</div>

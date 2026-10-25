@@ -1,0 +1,28 @@
+---
+import { Image } from 'astro:assets';
+import { sdgIcon } from '../lib/img';
+import { sdgs } from '../data/site';
+import SectionHead from './SectionHead.astro';
+---
+<section class="sec challenge" id="challenge">
+  <div class="wrap">
+    <div class="challenge-grid">
+      <div class="unlimited reveal"><img src="/brand/art-unlimited.png" alt="2026/27 Hult Prize Challenge: Unlimited" width="565" height="800" loading="lazy" /></div>
+      <div>
+        <SectionHead kicker="The 2026–27 challenge" lead="Pitch any for-profit startup that creates measurable social impact, as long as it serves at least one of the 17 UN Sustainable Development Goals. It must be a real business that can sustain itself, not a charity or a one-off project.">Unlimited. <em>No single topic.</em></SectionHead>
+        <div class="sdgs">
+          {sdgs.map((name, i) => (
+            <div class={`sdg-img reveal d${i % 6}`} title={`SDG ${i + 1}: ${name}`}>
+              <Image src={sdgIcon(i + 1)} alt={`SDG ${i + 1}: ${name}`} width={200} height={200} />
+            </div>
+          ))}
+          <div class="sdg-you reveal"><b>+</b><span>Your idea here</span></div>
+        </div>
+        <div class="rules">
+          <div class="rule reveal"><h4>Fluxelle · SDG 12</h4><p>Khwopa College of Engineering, 2026 national champion. Turns discarded coffee waste into organic, edible mushrooms.</p></div>
+          <div class="rule reveal d1"><h4>Vayudristi · SDGs 3 &amp; 11</h4><p>Saraswati Multiple Campus, 2025 national champion. AI that monitors and forecasts air quality.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

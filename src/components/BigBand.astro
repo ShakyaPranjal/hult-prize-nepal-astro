@@ -1,0 +1,9 @@
+---
+interface Props { words: string[]; dark?: boolean }
+const { words, dark = false } = Astro.props;
+const row = (offset: number) => [0, 1].flatMap(() => words.map((w, i) => ({ w, outline: (i + offset) % 2 === 0 })));
+---
+<div class={`bigband${dark ? ' dark' : ''}`} aria-hidden="true">
+  <div class="bigrow">{row(0).map((x) => <span><b class={x.outline ? 'o' : 'f'}>{x.w}</b><b class="star">✦</b></span>)}</div>
+  <div class="bigrow rev">{row(1).map((x) => <span><b class={x.outline ? 'o' : 'f'}>{x.w}</b><b class="star">✦</b></span>)}</div>
+</div>

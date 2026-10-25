@@ -1,0 +1,12 @@
+---
+import { faqs } from '../data/site';
+import SectionHead from './SectionHead.astro';
+---
+<section class="sec" id="faq">
+  <div class="wrap">
+    <SectionHead kicker="Questions">Good <em>to know</em></SectionHead>
+    <div class="faq">
+      {faqs.map(([q, a]) => <details><summary>{q}</summary><p>{a}</p></details>)}
+    </div>
+  </div>
+</section>

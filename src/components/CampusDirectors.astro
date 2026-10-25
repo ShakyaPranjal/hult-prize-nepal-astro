@@ -1,0 +1,52 @@
+---
+import { Image } from 'astro:assets';
+import { photo } from '../lib/img';
+import { campusDirectors, cdRole, season, team } from '../data/site';
+import SectionHead from './SectionHead.astro';
+const announced = campusDirectors.length > 0;
+const nc = team[0];
+---
+<section class="sec cds spot-glow" id="campus-directors">
+  <div class="cds-mesh" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="cds-top">
+      <SectionHead kicker="Campus Directors 2026–27" lead="Campus Directors are the student leaders who bring the Hult Prize to their college. They build the team, run the OnCampus Program and send their best startup to Nationals.">The leaders <em>on every campus</em></SectionHead>
+      <div class="cds-status reveal">
+        {announced ? (
+          <><span class="pill">Announced</span><span class="big">{campusDirectors.length} Campus Directors</span><p>Meet the student leaders running OnCampus Programs this season.</p></>
+        ) : (
+          <><span class="pill">Not yet appointed</span><span class="big">Announcing soon</span><p>Campus Directors for the 2026–27 season are being appointed now. Their names and colleges will appear here once announced.</p></>
+        )}
+      </div>
+    </div>
+
+    <div class="cds-grid">
+      {announced
+        ? campusDirectors.map((d, i) => (
+            <div class={`cd-flip reveal d${i % 3}`} tabindex="0">
+              <div class="cd-face cd-front">
+                <div class="cd-avatar">{d.photo ? <Image src={photo(d.photo)} alt="" width={168} height={168} /> : d.name.split(' ').map((w) => w[0]).slice(0, 2).join('')}</div>
+                <div><div class="who">{d.name}</div><div class="where">{d.campus}</div></div>
+                <span class="hint">Campus Director 2026–27</span>
+              </div>
+              <div class="cd-face cd-back"><span class="n">{String(i + 1).padStart(2, '0')}</span><b>{d.campus}</b><p>Leading the Hult Prize OnCampus Program for the 2026–27 season.</p></div>
+            </div>
+          ))
+        : cdRole.map(([h, p], i) => (
+            <div class={`cd-flip reveal d${i % 3}`} tabindex="0" aria-label={`${h}: ${p}`}>
+              <div class="cd-face cd-front">
+                <div class="cd-avatar" aria-hidden="true">?</div>
+                <div><div class="who">Campus Director</div><div class="where">Your campus here</div></div>
+                <span class="hint">Hover or tap to see the role</span>
+              </div>
+              <div class="cd-face cd-back"><span class="n">{String(i + 1).padStart(2, '0')}</span><b>{h}</b><p>{p}</p></div>
+            </div>
+          ))}
+    </div>
+
+    <div class="cds-cta reveal">
+      <a class="btn btn-sun" href={`mailto:${nc.email}?subject=Campus%20Director%202026-27`}>Want to lead your campus? <span class="arr">→</span></a>
+      <a class="btn btn-glass" href={season.instagram} target="_blank" rel="noopener">Follow @hultprizenepal for the call ↗</a>
+    </div>
+  </div>
+</section>

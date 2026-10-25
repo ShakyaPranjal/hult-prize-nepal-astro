@@ -1,0 +1,42 @@
+---
+import '../styles/global.css';
+import '../styles/motion.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props { title?: string; description?: string; nav?: boolean }
+const {
+  title = 'EF Hult Prize Nepal',
+  description = "EF Hult Prize Nepal runs the world's largest student startup competition in Nepal: OnCampus Programs, the National Competition, and the path to US$1M. Season 2026–27: Unlimited.",
+  nav = true,
+} = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#1a0a10" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/brand/logo-full-light.png" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" />
+    <script is:inline>document.documentElement.classList.add('js');</script>
+  </head>
+  <body>
+    <div class="progress-bar" id="progress"></div>
+    <Header nav={nav} />
+    <main><slot /></main>
+    <Footer />
+    <button class="to-top" id="to-top" aria-label="Back to top">↑</button>
+    <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+    <script>
+      import '../scripts/main.ts';
+    </script>
+  </body>
+</html>

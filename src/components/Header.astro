@@ -1,0 +1,24 @@
+---
+import { season } from '../data/site';
+interface Props { nav?: boolean }
+const { nav = true } = Astro.props;
+const links = [
+  ['about', 'About'], ['challenge', 'Challenge'], ['journey', 'Journey'], ['nepal', 'Nepal'], ['team', 'Team'],
+  ['campus-directors', 'Campus Directors'], ['campuses', 'Campuses'], ['nationals', 'Nationals'], ['partner', 'Partner'], ['contact', 'Contact'],
+];
+const base = nav ? '' : '/';
+---
+<header class="top" id="top-bar">
+  <div class="wrap top-inner">
+    <a class="logo" href={nav ? '#home' : '/'} aria-label="EF Hult Prize Nepal home"><img src="/brand/logo-mark-light.png" alt="EF Hult Prize Nepal" width="441" height="189" /></a>
+    <nav class="main" id="nav" aria-label="Main">
+      <ul>
+        {links.map(([id, label]) => <li><a href={`${base}#${id}`}>{label}</a></li>)}
+      </ul>
+    </nav>
+    <div style="display:flex;gap:10px;align-items:center">
+      <a class="btn btn-primary" href={season.register} target="_blank" rel="noopener">Register <span class="arr">→</span></a>
+      <button class="menu-btn" id="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>

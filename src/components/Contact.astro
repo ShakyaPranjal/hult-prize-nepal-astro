@@ -1,0 +1,26 @@
+---
+import { Image } from 'astro:assets';
+import { photo } from '../lib/img';
+import { team, season } from '../data/site';
+---
+<section class="sec contact" id="contact">
+  <div class="wrap contact-grid">
+    <div class="reveal">
+      <span class="kicker">Ready to bring Hult Prize to your campus?</span>
+      <h2 class="h2" style="margin:16px 0">Talk to our <em>national team</em></h2>
+      <p class="lead">We will walk you through registration, setting up your OnCampus Program, and everything after.</p>
+      <div class="socials" style="margin-top:22px">
+        <a class="btn btn-primary" href={season.instagram} target="_blank" rel="noopener">Instagram @hultprizenepal ↗</a>
+        <a class="btn btn-glass" href={season.official} target="_blank" rel="noopener">hultprize.org ↗</a>
+      </div>
+    </div>
+    <div class="contacts">
+      {team.map((p, i) => (
+        <div class={`ct reveal d${i}`}>
+          <Image src={photo(p.photo)} alt="" width={128} height={128} />
+          <div><b>{p.name}</b><span>{p.role.replace(' 2027', '')}</span><a href={`mailto:${p.email}`}>{p.email}</a></div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

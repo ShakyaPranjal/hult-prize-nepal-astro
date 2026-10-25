@@ -1,0 +1,21 @@
+---
+import { champions } from '../data/site';
+import SectionHead from './SectionHead.astro';
+---
+<section class="sec" id="champions">
+  <div class="wrap">
+    <SectionHead kicker="Made in Nepal">Our <em>national champions</em></SectionHead>
+    <div class="champs">
+      {champions.map((c, i) => (
+        <article class={`champ${c.alt ? ' b' : ''} reveal d${i}`}>
+          <span class="yr" aria-hidden="true">{c.y}</span>
+          <svg class="trophy" viewBox="0 0 64 64" aria-hidden="true"><path d="M18 8h28v10a14 14 0 0 1-28 0z" fill="#ffd400"/><path d="M18 12H8v4a10 10 0 0 0 10 10M46 12h10v4a10 10 0 0 1-10 10" fill="none" stroke="#ffd400" stroke-width="4"/><rect x="28" y="30" width="8" height="12" fill="#ffd400"/><rect x="18" y="42" width="28" height="8" rx="2" fill="#fff"/></svg>
+          <span class="crown">{c.y} National Champion</span>
+          <h3>{c.team}</h3>
+          <p>{c.college}. {c.text}</p>
+          <div class="meta">{c.meta.map((m) => <span>{m}</span>)}</div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

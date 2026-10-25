@@ -1,0 +1,36 @@
+---
+import { pastPartners, team } from '../data/site';
+import SectionHead from './SectionHead.astro';
+const nc = team[0];
+---
+<section class="sec" id="partner">
+  <div class="wrap">
+    <div class="partner-grid">
+      <div>
+        <SectionHead kicker="Partner with us" lead="Join the organizations backing student founders from 50+ colleges across Nepal, from OnCampus Programs to the National Competition.">Back Nepal's <em>next founders</em></SectionHead>
+        <a class="btn btn-primary reveal" href={`mailto:${nc.email}?subject=Partnering%20with%20Hult%20Prize%20Nepal`}>Talk to us about partnering <span class="arr">→</span></a>
+      </div>
+      <div class="partner-card reveal d1">
+        <h3>What partners get</h3>
+        <ul>
+          <li>Brand visibility across OnCampus events, Nationals and social media</li>
+          <li>A stall and product display at events</li>
+          <li>Speaking slots and seats on the judging panel</li>
+          <li>Early access to Nepal's most promising student talent</li>
+          <li>Recognition in press coverage and post-event videos</li>
+        </ul>
+      </div>
+    </div>
+    <div class="why">
+      <div class="reveal"><b>Diverse talent</b><span>Engage the brightest minds from 50+ colleges across Nepal.</span></div>
+      <div class="reveal d1"><b>Brand visibility</b><span>500+ media appearances across TV, print and digital.</span></div>
+      <div class="reveal d2"><b>Startup ecosystem</b><span>Connect with 50+ startups and industry experts.</span></div>
+      <div class="reveal d3"><b>Social impact</b><span>Support purpose-driven entrepreneurship aligned with the SDGs.</span></div>
+      <div class="reveal d4"><b>Customer reach</b><span>Meet students and young entrepreneurs directly.</span></div>
+    </div>
+    <div class="partners-chips">
+      <h3 class="reveal" style="font-size:1.3rem">Past national partners and supporters</h3>
+      <div class="logos-text reveal d1">{pastPartners.map((p) => <span>{p}</span>)}</div>
+    </div>
+  </div>
+</section>

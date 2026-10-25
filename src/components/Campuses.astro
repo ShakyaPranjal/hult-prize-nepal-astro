@@ -1,0 +1,28 @@
+---
+import { Image } from 'astro:assets';
+import { photo } from '../lib/img';
+import { campusCards } from '../data/site';
+import SectionHead from './SectionHead.astro';
+---
+<section class="sec campus" id="campuses">
+  <div class="wrap">
+    <SectionHead kicker="Hult Prize at colleges" lead="Every Hult Prize journey begins with a student-led OnCampus Program. Here is how campuses across Nepal have run theirs, starting with IOE Pulchowk in 2016.">Where it all starts: <em>OnCampus</em></SectionHead>
+
+
+    <div class="cards">
+      {campusCards.map((c, i) => (
+        <article class={`ccard reveal d${i % 3}`}><span class="yr">{c.yr}</span><h4>{c.h}</h4><p>{c.p}</p><a class="src" href={c.src[1]} target="_blank" rel="noopener">{c.src[0]} ↗</a></article>
+      ))}
+    </div>
+
+    <div class="logowall">
+      <div class="reveal">
+        <span class="kicker">Our campus network</span>
+        <h3 style="font-size:clamp(1.6rem,3vw,2.2rem);margin:14px 0">40+ campuses hosted OnCampus Programs in 2025–26</h3>
+        <p style="color:var(--muted)">From Tribhuvan University's constituent campuses to Little Angels', IMS, Samriddhi, Advanced College of Engineering, Softwarica, AITM, Thames, Rampur Campus, Deerwalk, Cosmos College, Saraswati Multiple Campus, KCM and King's College. Not on the wall yet? <a href="#host" style="color:var(--magenta);font-weight:700">Bring Hult Prize to your campus</a>.</p>
+      </div>
+      <div class="frame reveal d1"><Image src={photo('campus-logos-2025-26')} alt="Logos of colleges that hosted a Hult Prize OnCampus Program in the 2025–26 season" widths={[600, 1200]} sizes="(max-width: 1080px) 100vw, 620px" /></div>
+    </div>
+
+  </div>
+</section>

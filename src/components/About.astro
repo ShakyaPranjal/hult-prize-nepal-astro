@@ -1,0 +1,42 @@
+---
+import { Image } from 'astro:assets';
+import { photo } from '../lib/img';
+import { globalStats, globalHistory, leaders, globalWinners } from '../data/site';
+---
+<section class="sec" id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="photo-stack reveal">
+        <div class="main"><Image src={photo('ef-hult-community')} alt="Hult Prize participants with pink Hult Prize flags" widths={[700, 1400]} sizes="(max-width: 1080px) 100vw, 560px" loading="eager" /></div>
+        <div class="float"><b>1M+</b><span>young people since 2010</span></div>
+      </div>
+      <div class="about-copy">
+        <span class="kicker reveal">What is the EF Hult Prize?</span>
+        <h2 class="h2 reveal d1">The "Nobel Prize" <em>for students</em></h2>
+        <p class="reveal d2">The EF Hult Prize is the world's largest student startup competition. It challenges university students to build financially sustainable startups that tackle the world's biggest problems, in line with the UN Sustainable Development Goals.</p>
+        <p class="reveal d3">It began in 2010 at Hult International Business School and is funded by the Hult family, founders of EF Education First. More than a million young people have taken part. Every September, one team wins <b>US$1,000,000</b> in seed funding to launch its venture.</p>
+        <div class="stat-row reveal d4">
+          {globalStats.map((s) => <div class="stat"><b data-count={s.n} data-suffix={s.suffix}>{s.n.toLocaleString('en-US')}{s.suffix}</b><span>{s.label}</span></div>)}
+        </div>
+        <p class="reveal d5" style="font-size:.85rem">The 2026 global season in numbers.</p>
+      </div>
+    </div>
+
+    <div class="history">
+      {globalHistory.map((h, i) => <div class={`reveal d${i}`}><b>{h.y}</b><p>{h.t}</p></div>)}
+    </div>
+
+    <div class="leaders">
+      {leaders.map((l, i) => <article class={`leader reveal d${i}`}><span class="mono">{l.mono}</span><span class="role">{l.role}</span><h3>{l.name}</h3><p>{l.text}</p></article>)}
+    </div>
+
+    <div class="winners">
+      <h3 class="reveal">Ideas that won it all</h3>
+      <div class="win-scroll" tabindex="0" aria-label="Global Hult Prize winners">
+        <div class="win-track">
+          {globalWinners.map((w) => <article class="win"><span class="yr">{w.y}</span><h4>{w.name}</h4><p><b style="color:#fff">{w.where}.</b> {w.what}</p></article>)}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

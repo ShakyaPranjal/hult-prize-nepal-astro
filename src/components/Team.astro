@@ -1,0 +1,31 @@
+---
+import { Image } from 'astro:assets';
+import { photo } from '../lib/img';
+import { team, pastLeadership } from '../data/site';
+import SectionHead from './SectionHead.astro';
+---
+<section class="sec team spot-glow" id="team">
+  <div class="wrap">
+    <SectionHead kicker="The people behind it" lead="Leading Hult Prize Nepal through the 2026–27 Unlimited season.">Meet the <em>2027 national team</em></SectionHead>
+    <div class="people duo">
+      {team.map((p, i) => (
+        <div class={`frame-spin reveal d${i}`}>
+          <article class="person tilt">
+            <span class="badge">{p.badge}</span>
+            <Image src={photo(p.photo)} alt={p.name} widths={[420, 624]} sizes="(max-width: 640px) 100vw, 440px" />
+            <div class="info"><span class="r">{p.role}</span><h3>{p.name}</h3><a href={`mailto:${p.email}`}>{p.email}</a></div>
+          </article>
+        </div>
+      ))}
+    </div>
+    <div class="past">
+      <h3 class="reveal">Previous national leadership</h3>
+      <div class="past-grid">
+        {pastLeadership.map((s, i) => (
+          <div class={`past-card reveal d${i}`}><span class="s">{s.season}</span><ul>{s.people.map(([n, r]) => <li><b>{n}</b><span>{r}</span></li>)}</ul><p>{s.note}</p></div>
+        ))}
+        <div class="past-card reveal d2"><span class="s">How it works</span><p style="font-size:.92rem;color:rgba(255,255,255,.8)">The National Coordinator leads Hult Prize in Nepal and the National Competition. The National Community Coordinator keeps Campus Directors connected, onboarded and supported, and runs community events across the country.</p></div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,14 @@
+---
+import { journey } from '../data/site';
+import SectionHead from './SectionHead.astro';
+---
+<section class="sec" id="journey">
+  <div class="wrap">
+    <SectionHead kicker="The Hult Prize journey 2026–27" lead="Five stages take a student team from a college hall in Nepal to the US$1M Global Finals.">From your campus <em>to the world stage</em></SectionHead>
+    <div class="journey" id="journey-line">
+      <div class="bar" aria-hidden="true"></div>
+      {journey.map((s) => <div class={`step${s.now ? ' now' : ''}`}><div class="num">{s.n}</div><span class="when">{s.when}</span><h3>{s.title}</h3><p>{s.text}</p></div>)}
+    </div>
+    <p class="note">Stage months follow the official EF Hult Prize season calendar. Exact 2027 global dates are confirmed by Hult Prize during the season. National finalists are also considered for Hult Prize's Second Chance Round.</p>
+  </div>
+</section>

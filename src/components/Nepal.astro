@@ -1,0 +1,42 @@
+---
+import { Image } from 'astro:assets';
+import { photo } from '../lib/img';
+import { nepalStats, presence, story } from '../data/site';
+import SectionHead from './SectionHead.astro';
+const action = [
+  ['event-speaker', 'A speaker session for OnCampus teams'],
+  ['event-hall', 'A full hall for an OnCampus session'],
+  ['event-panelists', 'Panelists in conversation'],
+];
+---
+<section class="sec nepal" id="nepal">
+  <div class="wrap">
+    <div class="nepal-grid">
+      <div>
+        <SectionHead kicker="Hult Prize in Nepal" lead="Hult Prize Nepal runs the national program. We support OnCampus Programs at colleges across the country and host the National Competition, whose winner represents Nepal globally.">A movement <em>across the country</em></SectionHead>
+        <p class="kicker" style="margin-bottom:14px">Last season's qualifiers · 2025–26</p>
+        <div class="report">
+          {nepalStats.map((s, i) => <div class={`reveal d${i}`}><b data-count={s.n} data-suffix={s.suffix}>{s.n}{s.suffix}</b><span>{s.label}</span></div>)}
+        </div>
+      </div>
+      <div class="map-wrap reveal" role="img" aria-label={`Hult Prize Nepal presence: ${presence.map((p) => p.city).join(', ')}`}>
+        <img src="/brand/nepal-map.png" alt="" width="703" height="407" loading="lazy" />
+        {presence.map((p) => <div class="pin" style={`left:${p.x}%;top:${p.y}%`}><i></i><span>{p.city}</span></div>)}
+      </div>
+    </div>
+
+    <div class="action">
+      {action.map(([img, cap], i) => (
+        <figure class={`reveal d${i}`}>
+          <Image src={photo(img)} alt={cap} widths={[480, 900]} sizes="(max-width: 640px) 100vw, 33vw" />
+          <figcaption>{cap}</figcaption>
+        </figure>
+      ))}
+    </div>
+
+    <div class="story" id="story">
+      <div class="fillline" id="story-fill" aria-hidden="true"></div>
+      {story.map((s) => <div class={`st reveal${s.big ? ' big' : ''}`}><span class="y">{s.y}</span><div><h4>{s.h}</h4><p>{s.t}</p></div></div>)}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,33 @@
+---
+import { Image, getImage } from 'astro:assets';
+import { photo } from '../lib/img';
+import { gallery, summits } from '../data/site';
+import SectionHead from './SectionHead.astro';
+const items = await Promise.all(gallery.map(async (g) => {
+  const src = photo(g.img);
+  const full = await getImage({ src, width: Math.min(src.width, 1600) });
+  return { ...g, src, full: full.src };
+}));
+---
+<section class="sec" id="gallery" style="background:var(--soft)">
+  <div class="wrap">
+    <SectionHead kicker="Hult Prize global presence" lead="The 2023 regional summits took Hult Prize teams to Taipei, Monterrey, Melbourne, Boston, Mumbai and Dubai.">A worldwide <em>community</em></SectionHead>
+    <div class="summits">
+      {summits.map((s, i) => (
+        <div class={`summit reveal d${i % 3}`}><Image src={photo(s.img)} alt={`Hult Prize ${s.city} summit`} width={480} /><span>{s.city}</span></div>
+      ))}
+    </div>
+    <h3 class="reveal" style="font-size:1.6rem;margin-top:64px">Hult Prize Nepal in pictures</h3>
+    <div class="gallery" id="gallery-grid">
+      {items.map((g, i) => (
+        <button type="button" data-cap={g.cap} data-full={g.full} data-i={i} aria-label={`Enlarge: ${g.cap}`}>
+          <Image src={g.src} alt={g.cap} widths={[320, 640]} sizes="(max-width: 640px) 100vw, 280px" />
+        </button>
+      ))}
+    </div>
+  </div>
+</section>
+<dialog class="lb" id="lb" aria-label="Photo viewer">
+  <img id="lb-img" src="" alt="" />
+  <div class="lb-bar"><span id="lb-cap"></span><div style="display:flex;gap:8px"><button type="button" id="lb-prev" aria-label="Previous">←</button><button type="button" id="lb-next" aria-label="Next">→</button><button type="button" id="lb-close">Close</button></div></div>
+</dialog>

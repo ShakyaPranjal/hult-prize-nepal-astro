@@ -1,0 +1,25 @@
+---
+import { season, sources } from '../data/site';
+---
+<section class="sources" id="sources">
+  <div class="wrap">
+    <details>
+      <summary>Sources and verification</summary>
+      <p style="margin-top:10px">Every fact on this site was checked against the sources below on 18 October 2026. Hult Prize Nepal figures come from our own 2025–26 qualifiers report.</p>
+      <ul>
+        {sources.map(([label, url]) => <li>{url ? <a href={url} target="_blank" rel="noopener">{label}</a> : label}</li>)}
+      </ul>
+    </details>
+  </div>
+</section>
+<footer class="site">
+  <div class="wrap">
+    <div class="foot">
+      <div><img src="/brand/logo-full-light.png" alt="EF Hult Prize Nepal" width="1020" height="233" /><p>Changing the world through social enterprise. Hult Prize Nepal, 2026–27 season.</p></div>
+      <div><h4>Compete</h4><ul><li><a href="/#challenge">The challenge</a></li><li><a href="/#journey">The journey</a></li><li><a href="/#enter">Enter</a></li><li><a href={season.register} target="_blank" rel="noopener">Register ↗</a></li></ul></div>
+      <div><h4>Hult Prize Nepal</h4><ul><li><a href="/#nepal">Our story</a></li><li><a href="/#team">National team</a></li><li><a href="/#campus-directors">Campus Directors</a></li><li><a href="/#campuses">Campuses</a></li><li><a href="/#partner">Partner with us</a></li></ul></div>
+      <div><h4>Elsewhere</h4><ul><li><a href={season.official} target="_blank" rel="noopener">hultprize.org ↗</a></li><li><a href={season.instagram} target="_blank" rel="noopener">Instagram ↗</a></li><li><a href="/legal">Privacy &amp; terms</a></li></ul></div>
+    </div>
+    <div class="foot-bottom"><span>© 2026 Hult Prize Nepal. EF, Hult Prize and related marks belong to their owners.</span><span>Global figures: EF Hult Prize 2026 season. Nepal figures: Hult Prize Nepal 2025–26 qualifiers report.</span></div>
+  </div>
+</footer>
