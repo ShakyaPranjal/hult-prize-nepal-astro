@@ -22,7 +22,3 @@ Almost everything on the site lives in `src/data/site.ts`: season dates, stats, 
 Add each person to `campusDirectors` in `src/data/site.ts`, for example
 `{ name: 'Full Name', campus: 'College name', photo: 'file-name' }` (photo optional, saved in `src/assets/photos/`).
 The section switches from "Announcing soon" to their flip cards automatically.
-
-## Deploy
-
-`npm run build` produces a plain static site in `dist/`. Step-by-step instructions for Netlify Drop and GitHub + Cloudflare Pages/Vercel are in [DEPLOY.md](DEPLOY.md).
